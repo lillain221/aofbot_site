@@ -1,122 +1,205 @@
 <!DOCTYPE HTML>
 
+{% load static %}
+
 <html>
-	<head>
-		<title>Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="{% static 'css/styles.css' %}">
-	</head>
-	<body class="is-preload">
+    <head>
+        <title>Poker GTO bot</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'css/noscript.css' %}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    </head>
+    <body class="is-preload">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+        <!-- Header -->
+        <header id="header">
+            <div class="content">
+                <h1><a href="#">Poker GTO bot</a></h1>
+                <p>KKPOKER AoF<br />
+                    全自動、高速、完全ナッシュbot</p>
+                <ul class="actions">
+                    <li><a href="#purchase" class="button primary icon solid fa-download scrolly">購入</a></li>
+                    <li><a href="#three" class="button icon solid fa-chevron-down scrolly">よくある質問</a></li>
+                </ul>
+            </div>
+            <div class="image phone"><div class="inner"><img src="https://oncasi-poker.com/wp-content/uploads/2023/01/COposition.png"  /></div></div>
+        </header>
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<a href="" class="logo"><strong>My Portfolio</strong> <span>made by django</span></a>
-
-					</header>
-
-
-				<!-- Banner -->
-					<section id="banner" class="major">
-						<div class="inner">
-                            <span class="image">
-                                <img src="https://www.be-en.co.jp/upload/save_image/1027183126_61791c6e8b5a4.jpg" alt="" />
-                            </span>
-							<header class="major">
-								<h1>Hi, my name is Takumi Iwanade</h1>
-							</header>
-							<div class="content">
-								<p>Pythonを用いた画像認識や、DjangoやRailsを用いたWebアプリケーション開発で実績のあるエキスパート・エンジニアです。
-                            </p>
-							</div>
-						</div>
-					</section>
-
-				<!-- Main -->
-					<div id="main">
-
-						<!-- One -->
-							<section id="one" class="tiles">
-								<article>
-									<span class="image">
-										<img src="https://images.unsplash.com/photo-1670464452366-28dbfdecfdf7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="" />
-									</span>
-									<header class="major">
-										<h3><a>Skill</a></h3>
-										<p>python画像認識、Django、Ruby on Railsがメイン。フロント(JavaScript（ES6+）、React、Vue.js)、DB(MySQL、PostgreSQL、MongoDB)も経験あり</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="https://travel.rakuten.co.jp/mytrip/sites/mytrip/files/styles/main_image/public/migration_article_images/amazing/yakei-tokyo-key.jpg?itok=vgwpzTxk" alt="" />
-									</span>
-									<header class="major">
-										<h3><a>Career</a></h3>
-										<p>2002年東京生まれ、慶應義塾大学環境情報学部3年在学中。高校にて情報科学、特に、機械学習をスタンフォード大学の講義等で学ぶと同時に、個人事業主として働き始める。ベンチャー企業のCTO等の経験を経て、現在はフリーランスエンジニアとして活躍中</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="https://assets.st-note.com/production/uploads/images/25952237/28de0411d883288bf6184feb1c0e3183.jpg" alt="" />
-									</span>
-									<header class="major">
-										<h3><a>Achievement</a></h3>
-										<p>2018年、株式会社PRES フロントエンド(js)。</br>2020年、株式会社DXStrategy バックエンド(php)。</br>2021年、慶應大学講義用webアプリ開発(django)。</br>2022年、株式会社Kazamidori CTO 新規サービス企画~立ち上げ(nodejs rails)。</br>2022年、株式会社CloudEquityPrivateFund 画像認識モデルの開発(python)。</p>
-									</header>
-								</article>
-								<article>
-									<span class="image">
-										<img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/33/e2/19/centro.jpg?w=1200&h=1200&s=1" alt="" />
-									</span>
-									<header class="major">
-										<h3><a>Contact</a></h3>
-										<p>email : takumiiwanade@gmail.com(小文字)</p>
-									</header>
-								</article>
-							</section>
-
-						<!-- Two -->
-							<section id="two">
-								<div class="inner">
-									<header class="major">
-										<h2>Efficient</h2>
-									</header>
-									<p>お客様のビジネスの成功をサポートするため、私は迅速かつ効率的なサービス提供に努めます。ニーズを素早く把握し、常に最善のパフォーマンスを発揮することで、クライアントの期待を上回る価値を提供します。<br><br>
-                                    本サイトはDjangoで構築し、AWSサーバにアップしております。<br>
-                                    <a href="https://github.com/lillain221/myportfolio">GITHUBソースコード</a></p>
-
-								</div>
-							</section>
-
-					</div>
-
-
-
-				<!-- Footer -->
-					<footer id="footer">
-						<div class="inner">
-
-							<ul class="copyright">
-								<li>&copy; 2023 Takumi Iwanade</li>
-							</ul>
-						</div>
-					</footer>
-
+		<section id="site-description" class="wrapper special">
+			<div class="content">
+				<p class="site-description">Kkpokerというオンラインポーカーアプリ内で利用可能なナッシュ均衡(ゲーム理論)に沿ってプレイをする全自動botを販売しています。</p> <!-- 追加したサイトの説明文 -->
 			</div>
+		</section>
+        <!-- One -->
+        <section id="one" class="wrapper style2 special">
+            <header class="major">
+                <h2>使い方</h2>
+            </header>
+            <div class="instructions">
+                <p>①携帯とスマホを有線接続(無線通信も可能)</p><br>
+                <img src="https://www.svgrepo.com/show/79836/computer-linked-to-mobile-phone.svg" alt="使い方の画像" width="200" height="200"><br><br>
+				<p>②ソフトをPCにダウンロードして起動<br>
+					ソフト使用中の動画は<a href= "https://youtu.be/IDc5y2J2Q8w" ><font color="blue">こちら</font></a>
+				</p><br>
+                <img src="https://media.istockphoto.com/id/610774240/vector/laptop-and-download-file-icon-document-downloading-flat-vector-illustration.jpg?s=612x612&w=0&k=20&c=B_FtgQmsD68m3w56wodxtvIGge29nYg2MdvB7OijIJk=" alt="使い方の画像" width="200" height="200"><br><br>
+            </div>
+        </section>
 
-		<!-- Scripts -->
-			<script src="{% static 'js/jquery.min.js' %}"></script>
-            <script src="{% static 'js/jquery.scrolly.min.js' %}"></script>
-            <script src="{% static 'js/jquery.scrollex.min.js' %}"></script>
-            <script src="{% static 'js/browser.min.js' %}"></script>
-            <script src="{% static 'js/breakpoints.min.js' %}"></script>
-            <script src="{% static 'js/util.js' %}"></script>
-            <script src="{% static 'js/main.js' %}"></script>
+        <!-- Two -->
+        <section id="two" class="wrapper">
+			<header class="major">
+				<h2>安心・安全
+				</h2>
+			</header>
+            <div class="inner alt">
+                <section class="spotlight">
+                    <div class="image"><img src="https://thumb.ac-illust.com/12/120269ddf1e12000f2b56a4f7d9cd671_t.jpeg" alt="" /></div>
+                    <div class="content">
+                        <h3>豊富な販売実績</h3>
+                        <p>30件数以上の販売実績がございます。販売実績に関しましては、公式ツイッターのツイートを確認いただけますと幸いです。また、販売後もお客様からの好評の声が多数ございます。</p>
+                    </div>
+                </section>
 
-	</body>
+                <section class="spotlight">
+                    <div class="image"><img src="https://media.istockphoto.com/id/1421488605/ja/%E3%83%99%E3%82%AF%E3%82%BF%E3%83%BC/%E5%AE%89%E5%BF%83%E7%94%BB%E5%83%8F%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3.jpg?s=612x612&w=0&k=20&c=lpEtY5VgMGYh-_C1AHLgLy3g8vAVz57gmnTtXRclZ7g=" alt="" /></div>
+                    <div class="content">
+                        <h3>購入前後の安心感</h3>
+                        <p>購入前、必要に応じて作動様子をGoogle Meetなどの画面共有でリアルタイムにお見せ致します。また、購入後もシステムのアップデートに応じたサポート対応を致します。</p>
+                    </div>
+                </section>
+                <section class="spotlight">
+                    <div class="image"><img src="https://thumb.ac-illust.com/87/87056db52586aaeee4f5e69489609702_t.jpeg" alt="" /></div>
+                    <div class="content">
+                        <h3>凍結リスクゼロ</h3>
+                        <p>エミュレーターではない点・ボタンクリックタイミングのランダム化・クリック座標のランダム化によって人間と同等の動きをするため、凍結リスクを回避して安心してお使いいただける仕様になっております。</p>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <!-- Three -->
+        <section id="three" class="wrapper style3 special">
+            <div class="inner">
+                <header class="major">
+                    <h2>よくある質問</h2>
+                </header>
+                <ul class="features">
+
+                        <h3>Q1. 多面打ちできますか？</h3>
+                        <p>あいにく多面打ちは出来ません。ただ、処理速度は人間のアクションくらいに早いので、かなりのハンド数がこなせます。</p>
+
+                        <h3>Q2. 推奨レートはありますか？</h3>
+                        <p>低レート(0.32$~4$)と高レート(40$~)を推奨しています。というのも、このレート帯はミドルレートに比べてナッシュの人が少ない傾向にあります。なるべくナッシュと戦いたくはないので、上記レートが推奨です。</p>
+
+                        <h3>Q3. 端末はなんでも大丈夫ですか？</h3>
+                        <p>PCの端末はWindows、Mac双方対応可能です。スマホの端末はAndroidのみ対応可能です。Android端末がないお客様の為に、こちらからAndroid端末を無償で配送させて頂いております。
+						</p>
+						<h3>Q4. レンジの変更は可能ですか？</h3>
+                        <p>はい、ご自身でレンジの変更が可能です。</p>
+
+                        <h3>Q5. レンジ表もついてきますか？</h3>
+                        <p>必要でしたらレキバに応じたナッシュレンジ表をお送りさせていただきます。</p>
+
+                        <h3>Q6. 収支は絶対にプラスになりますか？</h3>
+                        <p>はい。昨年末レーキが2%になった為、以前程エッジを出すのは厳しくなったと言えます。しかしながら未だにナッシュから大きくずれているプレイヤーが多数存在し、宅選び・レーキバック・リーダーボードを駆使すれば確実に儲けることができます。</p>
+
+                        <h3>Q7. 分割での購入は可能ですか？</h3>
+                        <p>一括でのお支払いのみ対応させて頂いております。</p>
+
+                        <h3>Q8. アプデ等の保証はありますか？</h3>
+                        <p>はい。本サービス終了時までアプデ等の保証をさせて頂いております。</p>
+
+						<br><br>
+						<h4>その他の質問は<a href= "https://twitter.com/kkpoker_aofbot" >Twitter</a>か<a href= "https://line.me/ti/p/Kw9YhVWs3k" >Line</a>まで</h4>
+						<h4>お気軽にお問い合わせください。</h4>
+						
+                </ul>
+            </div>
+			
+        </section>
+
+        <!-- Purchase Instructions -->
+        <section id="purchase" class="wrapper special">
+            <header class="major print-black">
+                <h2>購入方法</h2>
+            </header>
+			
+            <div class="content">
+                <p>購入制限を設けているので、当サイトからのご購入はできません。<br><br>
+                    購入をご希望の方は、<a href= "https://twitter.com/kkpoker_aofbot" ><font color="blue">公式Twitter</font></a>のDMか<a href= "https://line.me/ti/p/Kw9YhVWs3k" ><font color="blue">公式Line</font></a>に「bot購入希望」とお送りください。<br>
+                    価格は通常1000ドルですが、2023年5月末までのリリース記念価格として650ドルで提供しています。<br><br><br>
+                    以下の決済方法に対応しています。</p>
+                
+                <section class="special">
+                    <style>
+                        .img-round {
+                            border-radius: 80%;
+                        }
+
+					
+						/* セクション全体の文字の色を変更 */
+						#purchase {
+							color: #000000; /* 濃い色に設定 */
+						}
+						header.print-black h2 {
+							color: #000000; /* テキストの色を黒に設定 */
+						}
+						/* その他のスタイルや要素のスタイルは省略 */
+					
+                    </style>
+                    <ul class="icons major">
+                        <li><img src="https://pbs.twimg.com/profile_images/1210132411528253440/SES3WwPJ_400x400.png" class="img-round" width="50" height="50"/></li>
+                        <li><img src="https://iconlab.kentakomiya.com/wp/wp-content/uploads/2019/06/icon0084.png" class="img-round" width="50" height="50"/></li>
+                        <li><img src="https://icon-pit.com/wp-content/uploads/2018/12/ic_credit-card_icon_3695-300x300.png" class="img-round" width="50" height="50"/></li>
+                        <li><img src="https://icooon-mono.com/i/icon_10569/icon_105690.svg" class="img-round" width="50" height="50"/></li>
+                        <li><img src="https://img.freepik.com/premium-vector/bitcoin-gold-flat-icon-round-logo-of-cryptocurrency-blockchain-token-emblem-of-virtual-money_554888-949.jpg" class="img-round" width="50" height="50"/></li>
+                        <li><img src="https://ginza-casino.jp/wp-content/uploads/2022/03/KKPOKER_400x400.jpg" class="img-round" width="50" height="50"/></li>
+                        <li><img src="https://pokerstores.asia/wp-content/uploads/2022/06/LOGO02.png" class="img-round" width="50" height="50"/></li>
+                    </ul>
+                </section>
+            </div>
+        </section>
+
+        <!-- Footer -->
+		<footer id="footer">
+			<style>
+				/* Twitterアイコンの色を変更 */
+				#footer .icons li a.icon.brands.alt.fa-twitter {
+					color: #1DA1F2; /* Twitterのブルー色 */
+				}
+				
+				/* Lineアイコンの色を変更 */
+				#footer .icons li a.icon.brands.alt.fa-line {
+					color: #00C300; /* Lineのグリーン色 */
+				}
+			</style>
+			<ul class="icons">
+				<li><a href="https://twitter.com/kkpoker_aofbot" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="https://line.me/ti/p/Kw9YhVWs3k" class="icon brands alt fa-line"><span class="label">Line</span></a></li>
+			</ul>
+		</footer>
+		
+		
+
+        <!-- Scripts -->
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/jquery.scrolly.min.js' %}"></script>
+        <script src="{% static 'js/jquery.scrollex.min.js' %}"></script>
+        <script src="{% static 'js/browser.min.js' %}"></script>
+        <script src="{% static 'js/breakpoints.min.js' %}"></script>
+        <script src="{% static 'js/util.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+
+        <script>
+            // スクロールで購入説明まで移動
+            $('.scrolly').scrolly({
+                offset: function () {
+                    return -$('#header').height();
+                },
+            });
+        </script>
+
+    </body>
 </html>
-
-

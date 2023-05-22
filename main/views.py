@@ -12,5 +12,5 @@ def career(request):
 def contact(request):
     return render(request, 'contact.html')
     
-def skill(request):
-    return render(request, 'skill.html')
+def google2243e3042b43a5c5(request):
+    return render(request, 'google2243e3042b43a5c5.html')
