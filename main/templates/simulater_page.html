@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KKPOKER AOF HEADSUP SIMULATOR</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            max-width: 800px; /* Increase the max-width to your desired value */
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+
+        h6 {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+            touch-action: manipulation;
+            font-size: 20px;
+        }
+
+        input[type="tel"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+            font-size: 40px;
+        }
+
+        /* モバイル用のスタイル */
+        @media (min-width : 1000px)  {
+            input[type="tel"] {
+                font-size: 20px;
+            }
+        }
+
+        table {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            width: calc(100% - 20px); /* Subtract the padding from the form */
+            margin: 0 auto;
+            border: 1px solid #464646;
+        }
+
+        table .row {
+            height: 15px;
+        }
+
+        label input {
+            display: none;
+            
+        }
+
+        label span {
+            background-color: #d9e0d6;
+            border: 1px solid #464646;
+            display: block;
+            height: 30px;
+            line-height: 30px; /* Set line-height equal to the height */
+            padding: 2px;
+            text-align: center;
+            width: 45px;
+            font-weight: normal;
+            font-size: 1.1em;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        label input:checked + span {
+            color: #FFF;
+            background: rgb(244, 140, 140);
+            border: 1px solid rgb(244, 140, 140);
+        }
+
+        button[type="submit"] {
+            display: block;
+            width: calc(100% - 20px); /* Subtract the padding from the form */
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 20px;
+            margin: 0 auto;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .site-usage {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .site-usage h2 {
+            margin-top: 0;
+        }
+
+        .popup-button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            width: 800px;
+            max-width: 90%;
+        }
+        .popup-content button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .popup-content button:hover {
+            background-color: #45a049;
+        }
+        .test01{
+            max-width: 800px; /* Increase the max-width to your desired value */
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            
+        }
+
+        .test02{
+            text-align: right;
+        }
+    </style>
+</head>
+
+
+<script>
+    function openPopup() {
+        var overlay = document.querySelector('.popup-overlay');
+        overlay.style.display = 'block';
+    }
+
+    function closePopup() {
+        var overlay = document.querySelector('.popup-overlay');
+        overlay.style.display = 'none';
+    }
+</script>
+
+<body>
+
+    <h1 style="font-size: 2.5em;">KKPOKER AOF HEADSUP SIMULATOR(SB)</h1>
+        <div class="test01">
+            <div class="test02">
+                <button class="popup-button" onclick="openPopup()" style="font-size: 1.3em;">使い方</button>
+            </div>
+            <h5 style="margin-bottom: 0;">本サイトは、HU時のSBオープンレンジを検証するためのシュミレータです。<br>
+                また、<a href="https://kkpokeraofbot.ml/">AOF GTO bot</a>でご利用いただけるツールにもなってます。</h5>
+
+            <div class="popup-overlay">
+                <div class="popup-content">
+                    <h2>シュミレータの使い方</h2>
+                    <p>本サイトは、KKPOKER AOFのヘッズアップ時にSBのオープンレンジを検証するためのシュミレータです。<br>
+                        また、<a href="https://kkpokeraofbot.ml/">AOF GTO bot</a>のためのツールでもあります。<a href="https://kkpokeraofbot.ml/">AOF bot</a>をご購入いただけたお客様にはSBだけでなく、全てのオープンレンジを検証するためのシュミレータをご用意しております。是非ご確認ください。
+    
+                    </p>
+                    <h4>前提</h4>
+                    <ol>
+                        <li>本サイトではBBのコールレンジに対してのSBの最適なオールインレンジハンドを求められます。</li>
+                        <li>BBの最適なコールレンジを求めるサイトではございません。</li>
+                        <li>BBのコールレンジに対して、SBのオールインレンジを2つ比較してどちらが最適かを把握します。</li>
+                        <li>8BBオールイン、単位はBBが100・SBが50・オールインは800で計算されています。</li>
+                        <li>レーキは2%で計算しています。</li>
+                    </ol>
+                    <h4>使用方法</h4>
+                    <ol>
+                        <li>レーキバック率・試行したい実行回数・プレイヤーの元金を入力してください。</li>
+                        <li>比較したいSBのハンドレンジ(2つ)とBBのコールレンジ(1つ)を表で選択してください。</li>
+                        <li>送信ボタンを押して結果をご確認ください</li>
+                    </ol>
+                    <button onclick="closePopup()" style="font-size: 1.3em;">閉じる</button>
+                </div>
+            </div>
+        </div>
+
+    <form action="result" method="post">
+        {% csrf_token %}
+       
+        <h6 style="font-size: 1.1em; margin-bottom: 0;">レーキバック (%)</h6>
+        <input type="tel" name="rake_back" required pattern="^\d+$" title="0以上の整数を入力してください"/>
+        
+
+
+        <h6 style="font-size: 1.1em; margin-bottom: 0;">実行回数 (500~20000回のみ実行可能)</h6>
+        <input type="tel" name="loop_num" required pattern="^(?:[5-9]\d{2}|[1-9]\d{3,4}|20000)$" title="500~20000の整数を入力してください"/>
+
+        <h6 style="font-size: 1.1em; margin-bottom: 0;">プレイヤー元金 (8BBAI・1BB=100)</h6>
+        <input type="tel" name="player1_money" required pattern="^[1-9]\d*$" title="1以上の整数を入力してください"/>
+
+        <br><br><br><br>
+        <table>
+            <caption ><input type="text" name="label1" value="SB-push1"/></caption>
+            <tr class="row">
+                <td><label><input type="checkbox" value="AAo" name="animal" checked><span>AA</span></label></td>
+                <td><label><input type="checkbox" value="AKs" name="animal" checked><span>AKs</span></label></td>
+                <td><label><input type="checkbox" value="AQs" name="animal" checked><span>AQs</span></label></td>
+                <td><label><input type="checkbox" value="AJs" name="animal" checked><span>AJs</span></label></td>
+                <td><label><input type="checkbox" value="ATs" name="animal" checked><span>ATs</span></label></td>
+                <td><label><input type="checkbox" value="A9s" name="animal" checked><span>A9s</span></label></td>
+                <td><label><input type="checkbox" value="A8s" name="animal" checked><span>A8s</span></label></td>
+                <td><label><input type="checkbox" value="A7s" name="animal" checked><span>A7s</span></label></td>
+                <td><label><input type="checkbox" value="A6s" name="animal" checked><span>A6s</span></label></td>
+                <td><label><input type="checkbox" value="A5s" name="animal" checked><span>A5s</span></label></td>
+                <td><label><input type="checkbox" value="A4s" name="animal" checked><span>A4s</span></label></td>
+                <td><label><input type="checkbox" value="A3s" name="animal" checked><span>A3s</span></label></td>
+                <td><label><input type="checkbox" value="A2s" name="animal" checked><span>A2s</span></label></td>
+            </tr>
+            <tr class="row">
+                <td><label><input type="checkbox" value="AKo" name="animal" checked><span>AKo</span></label></td>
+                <td><label><input type="checkbox" value="KKo" name="animal" checked><span>KK</span></label></td>
+                <td><label><input type="checkbox" value="KQs" name="animal" checked><span>KQs</span></label></td>
+                <td><label><input type="checkbox" value="KJs" name="animal" checked><span>KJs</span></label></td>
+                <td><label><input type="checkbox" value="KTs" name="animal" checked><span>KTs</span></label></td>
+                <td><label><input type="checkbox" value="K9s" name="animal" checked><span>K9s</span></label></td>
+                <td><label><input type="checkbox" value="K8s" name="animal" checked><span>K8s</span></label></td>
+                <td><label><input type="checkbox" value="K7s" name="animal" checked><span>K7s</span></label></td>
+                <td><label><input type="checkbox" value="K6s" name="animal" checked><span>K6s</span></label></td>
+                <td><label><input type="checkbox" value="K5s" name="animal" checked><span>K5s</span></label></td>
+                <td><label><input type="checkbox" value="K4s" name="animal" checked><span>K4s</span></label></td>
+                <td><label><input type="checkbox" value="K3s" name="animal" checked><span>K3s</span></label></td>
+                <td><label><input type="checkbox" value="K2s" name="animal" checked><span>K2s</span></label></td>
+            </tr>
+            <tr class="row">
+                <td><label><input type="checkbox" value="AQo" name="animal" checked><span>AQo</span></label></td>
+                <td><label><input type="checkbox" value="KQo" name="animal" checked><span>KQo</span></label></td>
+                <td><label><input type="checkbox" value="QQo" name="animal" checked><span>QQ</span></label></td>
+                <td><label><input type="checkbox" value="QJs" name="animal" checked><span>QJs</span></label></td>
+                <td><label><input type="checkbox" value="QTs" name="animal" checked><span>QTs</span></label></td>
+                <td><label><input type="checkbox" value="Q9s" name="animal" checked><span>Q9s</span></label></td>
+                <td><label><input type="checkbox" value="Q8s" name="animal" checked><span>Q8s</span></label></td>
+                <td><label><input type="checkbox" value="Q7s" name="animal" checked><span>Q7s</span></label></td>
+                <td><label><input type="checkbox" value="Q6s" name="animal" checked><span>Q6s</span></label></td>
+                <td><label><input type="checkbox" value="Q5s" name="animal" checked><span>Q5s</span></label></td>
+                <td><label><input type="checkbox" value="Q4s" name="animal" checked><span>Q4s</span></label></td>
+                <td><label><input type="checkbox" value="Q3s" name="animal" checked><span>Q3s</span></label></td>
+                <td><label><input type="checkbox" value="Q2s" name="animal" checked><span>Q2s</span></label></td>
+            </tr>
+            <tr class="row">
+                <td><label><input type="checkbox" value="AJo" name="animal" checked><span>AJo</span></label></td>
+                <td><label><input type="checkbox" value="KJo" name="animal" checked><span>KJo</span></label></td>
+                <td><label><input type="checkbox" value="QJo" name="animal" checked><span>QJo</span></label></td>
+                <td><label><input type="checkbox" value="JJo" name="animal" checked><span>JJ</span></label></td>
+                <td><label><input type="checkbox" value="JTs" name="animal" checked><span>JTs</span></label></td>
+                <td><label><input type="checkbox" value="J9s" name="animal" checked><span>J9s</span></label></td>
+                <td><label><input type="checkbox" value="J8s" name="animal" checked><span>J8s</span></label></td>
+                <td><label><input type="checkbox" value="J7s" name="animal" checked><span>J7s</span></label></td>
+                <td><label><input type="checkbox" value="J6s" name="animal" checked><span>J6s</span></label></td>
+                <td><label><input type="checkbox" value="J5s" name="animal" checked><span>J5s</span></label></td>
+                <td><label><input type="checkbox" value="J4s" name="animal" checked><span>J4s</span></label></td>
+                <td><label><input type="checkbox" value="J3s" name="animal" checked><span>J3s</span></label></td>
+                <td><label><input type="checkbox" value="J2s" name="animal" checked><span>J2s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="ATo" name="animal" checked><span>ATo</span></label></td>
+                <td><label><input type="checkbox" value="KTo" name="animal" checked><span>KTo</span></label></td>
+                <td><label><input type="checkbox" value="QTo" name="animal" checked><span>QTo</span></label></td>
+                <td><label><input type="checkbox" value="JTo" name="animal" checked><span>JTo</span></label></td>
+                <td><label><input type="checkbox" value="TTo" name="animal" checked><span>TT</span></label></td>
+                <td><label><input type="checkbox" value="T9s" name="animal" checked><span>T9s</span></label></td>
+                <td><label><input type="checkbox" value="T8s" name="animal" checked><span>T8s</span></label></td>
+                <td><label><input type="checkbox" value="T7s" name="animal" checked><span>T7s</span></label></td>
+                <td><label><input type="checkbox" value="T6s" name="animal" checked><span>T6s</span></label></td>
+                <td><label><input type="checkbox" value="T5s" name="animal" checked><span>T5s</span></label></td>
+                <td><label><input type="checkbox" value="T4s" name="animal" checked><span>T4s</span></label></td>
+                <td><label><input type="checkbox" value="T3s" name="animal"><span>T3s</span></label></td>
+                <td><label><input type="checkbox" value="T2s" name="animal"><span>T2s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A9o" name="animal" checked><span>A9o</span></label></td>
+                <td><label><input type="checkbox" value="K9o" name="animal" checked><span>K9o</span></label></td>
+                <td><label><input type="checkbox" value="Q9o" name="animal" checked><span>Q9o</span></label></td>
+                <td><label><input type="checkbox" value="J9o" name="animal" checked><span>J9o</span></label></td>
+                <td><label><input type="checkbox" value="T9o" name="animal" checked><span>T9o</span></label></td>
+                <td><label><input type="checkbox" value="99o" name="animal" checked><span>99</span></label></td>
+                <td><label><input type="checkbox" value="98s" name="animal" checked><span>98s</span></label></td>
+                <td><label><input type="checkbox" value="97s" name="animal" checked><span>97s</span></label></td>
+                <td><label><input type="checkbox" value="96s" name="animal" checked><span>96s</span></label></td>
+                <td><label><input type="checkbox" value="95s" name="animal" checked><span>95s</span></label></td>
+                <td><label><input type="checkbox" value="94s" name="animal"><span>94s</span></label></td>
+                <td><label><input type="checkbox" value="93s" name="animal"><span>93s</span></label></td>
+                <td><label><input type="checkbox" value="92s" name="animal"><span>92s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A8o" name="animal" checked><span>A8o</span></label></td>
+                <td><label><input type="checkbox" value="K8o" name="animal" checked><span>K8o</span></label></td>
+                <td><label><input type="checkbox" value="Q8o" name="animal" checked><span>Q8o</span></label></td>
+                <td><label><input type="checkbox" value="J8o" name="animal" checked><span>J8o</span></label></td>
+                <td><label><input type="checkbox" value="T8o" name="animal" checked><span>T8o</span></label></td>
+                <td><label><input type="checkbox" value="98o" name="animal" checked><span>98o</span></label></td>
+                <td><label><input type="checkbox" value="88o" name="animal" checked><span>88</span></label></td>
+                <td><label><input type="checkbox" value="87s" name="animal" checked><span>87s</span></label></td>
+                <td><label><input type="checkbox" value="86s" name="animal" checked><span>86s</span></label></td>
+                <td><label><input type="checkbox" value="85s" name="animal" checked><span>85s</span></label></td>
+                <td><label><input type="checkbox" value="84s" name="animal"><span>84s</span></label></td>
+                <td><label><input type="checkbox" value="83s" name="animal"><span>83s</span></label></td>
+                <td><label><input type="checkbox" value="82s" name="animal"><span>82s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A7o" name="animal" checked><span>A7o</span></label></td>
+                <td><label><input type="checkbox" value="K7o" name="animal" checked><span>K7o</span></label></td>
+                <td><label><input type="checkbox" value="Q7o" name="animal" checked><span>Q7o</span></label></td>
+                <td><label><input type="checkbox" value="J7o" name="animal" checked><span>J7o</span></label></td>
+                <td><label><input type="checkbox" value="T7o" name="animal" checked><span>T7o</span></label></td>
+                <td><label><input type="checkbox" value="97o" name="animal" checked><span>97o</span></label></td>
+                <td><label><input type="checkbox" value="87o" name="animal" checked><span>87o</span></label></td>
+                <td><label><input type="checkbox" value="77o" name="animal" checked><span>77</span></label></td>
+                <td><label><input type="checkbox" value="76s" name="animal" checked><span>76s</span></label></td>
+                <td><label><input type="checkbox" value="75s" name="animal" checked><span>75s</span></label></td>
+                <td><label><input type="checkbox" value="74s" name="animal" checked><span>74s</span></label></td>
+                <td><label><input type="checkbox" value="73s" name="animal"><span>73s</span></label></td>
+                <td><label><input type="checkbox" value="72s" name="animal"><span>72s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A6o" name="animal" checked><span>A6o</span></label></td>
+                <td><label><input type="checkbox" value="K6o" name="animal" checked><span>K6o</span></label></td>
+                <td><label><input type="checkbox" value="Q6o" name="animal" checked><span>Q6o</span></label></td>
+                <td><label><input type="checkbox" value="J6o" name="animal"><span>J6o</span></label></td>
+                <td><label><input type="checkbox" value="T6o" name="animal"><span>T6o</span></label></td>
+                <td><label><input type="checkbox" value="96o" name="animal"><span>96o</span></label></td>
+                <td><label><input type="checkbox" value="86o" name="animal"><span>86o</span></label></td>
+                <td><label><input type="checkbox" value="76o" name="animal" checked><span>76o</span></label></td>
+                <td><label><input type="checkbox" value="66o" name="animal" checked><span>66</span></label></td>
+                <td><label><input type="checkbox" value="65s" name="animal" checked><span>65s</span></label></td>
+                <td><label><input type="checkbox" value="64s" name="animal" checked><span>64s</span></label></td>
+                <td><label><input type="checkbox" value="63s" name="animal"><span>63s</span></label></td>
+                <td><label><input type="checkbox" value="62s" name="animal"><span>62s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A5o" name="animal" checked><span>A5o</span></label></td>
+                <td><label><input type="checkbox" value="K5o" name="animal" checked><span>K5o</span></label></td>
+                <td><label><input type="checkbox" value="Q5o" name="animal" checked><span>Q5o</span></label></td>
+                <td><label><input type="checkbox" value="J5o" name="animal"><span>J5o</span></label></td>
+                <td><label><input type="checkbox" value="T5o" name="animal"><span>T5o</span></label></td>
+                <td><label><input type="checkbox" value="95o" name="animal"><span>95o</span></label></td>
+                <td><label><input type="checkbox" value="85o" name="animal"><span>85o</span></label></td>
+                <td><label><input type="checkbox" value="75o" name="animal"><span>75o</span></label></td>
+                <td><label><input type="checkbox" value="65o" name="animal"><span>65o</span></label></td>
+                <td><label><input type="checkbox" value="55o" name="animal" checked><span>55</span></label></td>
+                <td><label><input type="checkbox" value="54s" name="animal" checked><span>54s</span></label></td>
+                <td><label><input type="checkbox" value="53s" name="animal" checked><span>53s</span></label></td>
+                <td><label><input type="checkbox" value="52s" name="animal"><span>52s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A4o" name="animal" checked><span>A4o</span></label></td>
+                <td><label><input type="checkbox" value="K4o" name="animal" checked><span>K4o</span></label></td>
+                <td><label><input type="checkbox" value="Q4o" name="animal" checked><span>Q4o</span></label></td>
+                <td><label><input type="checkbox" value="J4o" name="animal"><span>J4o</span></label></td>
+                <td><label><input type="checkbox" value="T4o" name="animal"><span>T4o</span></label></td>
+                <td><label><input type="checkbox" value="94o" name="animal"><span>94o</span></label></td>
+                <td><label><input type="checkbox" value="84o" name="animal"><span>84o</span></label></td>
+                <td><label><input type="checkbox" value="74o" name="animal"><span>74o</span></label></td>
+                <td><label><input type="checkbox" value="64o" name="animal"><span>64o</span></label></td>
+                <td><label><input type="checkbox" value="54o" name="animal"><span>54o</span></label></td>
+                <td><label><input type="checkbox" value="44o" name="animal" checked><span>44</span></label></td>
+                <td><label><input type="checkbox" value="43s" name="animal"><span>43s</span></label></td>
+                <td><label><input type="checkbox" value="42s" name="animal"><span>42s</span></label></td>
+            </tr>
+            <tr >
+                <td><label><input type="checkbox" value="A3o" name="animal" checked><span>A3o</span></label></td>
+                <td><label><input type="checkbox" value="K3o" name="animal" checked><span>K3o</span></label></td>
+                <td><label><input type="checkbox" value="Q3o" name="animal"><span>Q3o</span></label></td>
+                <td><label><input type="checkbox" value="J3o" name="animal"><span>J3o</span></label></td>
+                <td><label><input type="checkbox" value="T3o" name="animal"><span>T3o</span></label></td>
+                <td><label><input type="checkbox" value="93o" name="animal"><span>93o</span></label></td>
+                <td><label><input type="checkbox" value="83o" name="animal"><span>83o</span></label></td>
+                <td><label><input type="checkbox" value="73o" name="animal"><span>73o</span></label></td>
+                <td><label><input type="checkbox" value="63o" name="animal"><span>63o</span></label></td>
+                <td><label><input type="checkbox" value="53o" name="animal"><span>53o</span></label></td>
+                <td><label><input type="checkbox" value="43o" name="animal"><span>43o</span></label></td>
+                <td><label><input type="checkbox" value="33o" name="animal" checked><span>33</span></label></td>
+                <td><label><input type="checkbox" value="32s" name="animal"><span>32s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A2o" name="animal" checked><span>A2o</span></label></td>
+                <td><label><input type="checkbox" value="K2o" name="animal" checked><span>K2o</span></label></td>
+                <td><label><input type="checkbox" value="Q2o" name="animal"><span>Q2o</span></label></td>
+                <td><label><input type="checkbox" value="J2o" name="animal"><span>J2o</span></label></td>
+                <td><label><input type="checkbox" value="T2o" name="animal"><span>T2o</span></label></td>
+                <td><label><input type="checkbox" value="92o" name="animal"><span>92o</span></label></td>
+                <td><label><input type="checkbox" value="82o" name="animal"><span>82o</span></label></td>
+                <td><label><input type="checkbox" value="72o" name="animal"><span>72o</span></label></td>
+                <td><label><input type="checkbox" value="62o" name="animal"><span>62o</span></label></td>
+                <td><label><input type="checkbox" value="52o" name="animal"><span>52o</span></label></td>
+                <td><label><input type="checkbox" value="42o" name="animal"><span>42o</span></label></td>
+                <td><label><input type="checkbox" value="32o" name="animal"><span>32o</span></label></td>
+                <td><label><input type="checkbox" value="22o" name="animal" checked><span>22</span></label></td>
+            </tr>
+        </table>
+        <br><br>
+        <table>
+            <caption><input type="text" name="label2" value="SB-push2"/></caption>
+            <tr class="row">
+                <td><label><input type="checkbox" value="AAo" name="handrange_2" checked><span>AA</span></label></td>
+                <td><label><input type="checkbox" value="AKs" name="handrange_2" checked><span>AKs</span></label></td>
+                <td><label><input type="checkbox" value="AQs" name="handrange_2" checked><span>AQs</span></label></td>
+                <td><label><input type="checkbox" value="AJs" name="handrange_2" checked><span>AJs</span></label></td>
+                <td><label><input type="checkbox" value="ATs" name="handrange_2" checked><span>ATs</span></label></td>
+                <td><label><input type="checkbox" value="A9s" name="handrange_2" checked><span>A9s</span></label></td>
+                <td><label><input type="checkbox" value="A8s" name="handrange_2" checked><span>A8s</span></label></td>
+                <td><label><input type="checkbox" value="A7s" name="handrange_2" checked><span>A7s</span></label></td>
+                <td><label><input type="checkbox" value="A6s" name="handrange_2" checked><span>A6s</span></label></td>
+                <td><label><input type="checkbox" value="A5s" name="handrange_2" checked><span>A5s</span></label></td>
+                <td><label><input type="checkbox" value="A4s" name="handrange_2" checked><span>A4s</span></label></td>
+                <td><label><input type="checkbox" value="A3s" name="handrange_2" checked><span>A3s</span></label></td>
+                <td><label><input type="checkbox" value="A2s" name="handrange_2" checked><span>A2s</span></label></td>
+            </tr>
+            <tr class="row">
+                <td><label><input type="checkbox" value="AKo" name="handrange_2" checked><span>AKo</span></label></td>
+                <td><label><input type="checkbox" value="KKo" name="handrange_2" checked><span>KK</span></label></td>
+                <td><label><input type="checkbox" value="KQs" name="handrange_2" checked><span>KQs</span></label></td>
+                <td><label><input type="checkbox" value="KJs" name="handrange_2" checked><span>KJs</span></label></td>
+                <td><label><input type="checkbox" value="KTs" name="handrange_2" checked><span>KTs</span></label></td>
+                <td><label><input type="checkbox" value="K9s" name="handrange_2" checked><span>K9s</span></label></td>
+                <td><label><input type="checkbox" value="K8s" name="handrange_2" checked><span>K8s</span></label></td>
+                <td><label><input type="checkbox" value="K7s" name="handrange_2" checked><span>K7s</span></label></td>
+                <td><label><input type="checkbox" value="K6s" name="handrange_2" checked><span>K6s</span></label></td>
+                <td><label><input type="checkbox" value="K5s" name="handrange_2" checked><span>K5s</span></label></td>
+                <td><label><input type="checkbox" value="K4s" name="handrange_2" checked><span>K4s</span></label></td>
+                <td><label><input type="checkbox" value="K3s" name="handrange_2" checked><span>K3s</span></label></td>
+                <td><label><input type="checkbox" value="K2s" name="handrange_2" checked><span>K2s</span></label></td>
+            </tr>
+            <tr class="row">
+                <td><label><input type="checkbox" value="AQo" name="handrange_2" checked><span>AQo</span></label></td>
+                <td><label><input type="checkbox" value="KQo" name="handrange_2" checked><span>KQo</span></label></td>
+                <td><label><input type="checkbox" value="QQo" name="handrange_2" checked><span>QQ</span></label></td>
+                <td><label><input type="checkbox" value="QJs" name="handrange_2" checked><span>QJs</span></label></td>
+                <td><label><input type="checkbox" value="QTs" name="handrange_2" checked><span>QTs</span></label></td>
+                <td><label><input type="checkbox" value="Q9s" name="handrange_2" checked><span>Q9s</span></label></td>
+                <td><label><input type="checkbox" value="Q8s" name="handrange_2" checked><span>Q8s</span></label></td>
+                <td><label><input type="checkbox" value="Q7s" name="handrange_2" checked><span>Q7s</span></label></td>
+                <td><label><input type="checkbox" value="Q6s" name="handrange_2" checked><span>Q6s</span></label></td>
+                <td><label><input type="checkbox" value="Q5s" name="handrange_2" checked><span>Q5s</span></label></td>
+                <td><label><input type="checkbox" value="Q4s" name="handrange_2" checked><span>Q4s</span></label></td>
+                <td><label><input type="checkbox" value="Q3s" name="handrange_2" checked><span>Q3s</span></label></td>
+                <td><label><input type="checkbox" value="Q2s" name="handrange_2" checked><span>Q2s</span></label></td>
+            </tr>
+            <tr class="row">
+                <td><label><input type="checkbox" value="AJo" name="handrange_2" checked><span>AJo</span></label></td>
+                <td><label><input type="checkbox" value="KJo" name="handrange_2" checked><span>KJo</span></label></td>
+                <td><label><input type="checkbox" value="QJo" name="handrange_2" checked><span>QJo</span></label></td>
+                <td><label><input type="checkbox" value="JJo" name="handrange_2" checked><span>JJ</span></label></td>
+                <td><label><input type="checkbox" value="JTs" name="handrange_2" checked><span>JTs</span></label></td>
+                <td><label><input type="checkbox" value="J9s" name="handrange_2" checked><span>J9s</span></label></td>
+                <td><label><input type="checkbox" value="J8s" name="handrange_2" checked><span>J8s</span></label></td>
+                <td><label><input type="checkbox" value="J7s" name="handrange_2" checked><span>J7s</span></label></td>
+                <td><label><input type="checkbox" value="J6s" name="handrange_2" checked><span>J6s</span></label></td>
+                <td><label><input type="checkbox" value="J5s" name="handrange_2" checked><span>J5s</span></label></td>
+                <td><label><input type="checkbox" value="J4s" name="handrange_2" checked><span>J4s</span></label></td>
+                <td><label><input type="checkbox" value="J3s" name="handrange_2" checked><span>J3s</span></label></td>
+                <td><label><input type="checkbox" value="J2s" name="handrange_2" checked><span>J2s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="ATo" name="handrange_2" checked><span>ATo</span></label></td>
+                <td><label><input type="checkbox" value="KTo" name="handrange_2" checked><span>KTo</span></label></td>
+                <td><label><input type="checkbox" value="QTo" name="handrange_2" checked><span>QTo</span></label></td>
+                <td><label><input type="checkbox" value="JTo" name="handrange_2" checked><span>JTo</span></label></td>
+                <td><label><input type="checkbox" value="TTo" name="handrange_2" checked><span>TT</span></label></td>
+                <td><label><input type="checkbox" value="T9s" name="handrange_2" checked><span>T9s</span></label></td>
+                <td><label><input type="checkbox" value="T8s" name="handrange_2" checked><span>T8s</span></label></td>
+                <td><label><input type="checkbox" value="T7s" name="handrange_2" checked><span>T7s</span></label></td>
+                <td><label><input type="checkbox" value="T6s" name="handrange_2" checked><span>T6s</span></label></td>
+                <td><label><input type="checkbox" value="T5s" name="handrange_2" checked><span>T5s</span></label></td>
+                <td><label><input type="checkbox" value="T4s" name="handrange_2" checked><span>T4s</span></label></td>
+                <td><label><input type="checkbox" value="T3s" name="handrange_2"><span>T3s</span></label></td>
+                <td><label><input type="checkbox" value="T2s" name="handrange_2"><span>T2s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A9o" name="handrange_2" checked><span>A9o</span></label></td>
+                <td><label><input type="checkbox" value="K9o" name="handrange_2" checked><span>K9o</span></label></td>
+                <td><label><input type="checkbox" value="Q9o" name="handrange_2" checked><span>Q9o</span></label></td>
+                <td><label><input type="checkbox" value="J9o" name="handrange_2" checked><span>J9o</span></label></td>
+                <td><label><input type="checkbox" value="T9o" name="handrange_2" checked><span>T9o</span></label></td>
+                <td><label><input type="checkbox" value="99o" name="handrange_2" checked><span>99</span></label></td>
+                <td><label><input type="checkbox" value="98s" name="handrange_2" checked><span>98s</span></label></td>
+                <td><label><input type="checkbox" value="97s" name="handrange_2" checked><span>97s</span></label></td>
+                <td><label><input type="checkbox" value="96s" name="handrange_2" checked><span>96s</span></label></td>
+                <td><label><input type="checkbox" value="95s" name="handrange_2" checked><span>95s</span></label></td>
+                <td><label><input type="checkbox" value="94s" name="handrange_2"><span>94s</span></label></td>
+                <td><label><input type="checkbox" value="93s" name="handrange_2"><span>93s</span></label></td>
+                <td><label><input type="checkbox" value="92s" name="handrange_2"><span>92s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A8o" name="handrange_2" checked><span>A8o</span></label></td>
+                <td><label><input type="checkbox" value="K8o" name="handrange_2" checked><span>K8o</span></label></td>
+                <td><label><input type="checkbox" value="Q8o" name="handrange_2" checked><span>Q8o</span></label></td>
+                <td><label><input type="checkbox" value="J8o" name="handrange_2" checked><span>J8o</span></label></td>
+                <td><label><input type="checkbox" value="T8o" name="handrange_2" checked><span>T8o</span></label></td>
+                <td><label><input type="checkbox" value="98o" name="handrange_2" checked><span>98o</span></label></td>
+                <td><label><input type="checkbox" value="88o" name="handrange_2" checked><span>88</span></label></td>
+                <td><label><input type="checkbox" value="87s" name="handrange_2" checked><span>87s</span></label></td>
+                <td><label><input type="checkbox" value="86s" name="handrange_2" checked><span>86s</span></label></td>
+                <td><label><input type="checkbox" value="85s" name="handrange_2" checked><span>85s</span></label></td>
+                <td><label><input type="checkbox" value="84s" name="handrange_2"><span>84s</span></label></td>
+                <td><label><input type="checkbox" value="83s" name="handrange_2"><span>83s</span></label></td>
+                <td><label><input type="checkbox" value="82s" name="handrange_2"><span>82s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A7o" name="handrange_2" checked><span>A7o</span></label></td>
+                <td><label><input type="checkbox" value="K7o" name="handrange_2" checked><span>K7o</span></label></td>
+                <td><label><input type="checkbox" value="Q7o" name="handrange_2" checked><span>Q7o</span></label></td>
+                <td><label><input type="checkbox" value="J7o" name="handrange_2" checked><span>J7o</span></label></td>
+                <td><label><input type="checkbox" value="T7o" name="handrange_2" checked><span>T7o</span></label></td>
+                <td><label><input type="checkbox" value="97o" name="handrange_2" checked><span>97o</span></label></td>
+                <td><label><input type="checkbox" value="87o" name="handrange_2" checked><span>87o</span></label></td>
+                <td><label><input type="checkbox" value="77o" name="handrange_2" checked><span>77</span></label></td>
+                <td><label><input type="checkbox" value="76s" name="handrange_2" checked><span>76s</span></label></td>
+                <td><label><input type="checkbox" value="75s" name="handrange_2" checked><span>75s</span></label></td>
+                <td><label><input type="checkbox" value="74s" name="handrange_2" checked><span>74s</span></label></td>
+                <td><label><input type="checkbox" value="73s" name="handrange_2"><span>73s</span></label></td>
+                <td><label><input type="checkbox" value="72s" name="handrange_2"><span>72s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A6o" name="handrange_2" checked><span>A6o</span></label></td>
+                <td><label><input type="checkbox" value="K6o" name="handrange_2" checked><span>K6o</span></label></td>
+                <td><label><input type="checkbox" value="Q6o" name="handrange_2" checked><span>Q6o</span></label></td>
+                <td><label><input type="checkbox" value="J6o" name="handrange_2"><span>J6o</span></label></td>
+                <td><label><input type="checkbox" value="T6o" name="handrange_2"><span>T6o</span></label></td>
+                <td><label><input type="checkbox" value="96o" name="handrange_2"><span>96o</span></label></td>
+                <td><label><input type="checkbox" value="86o" name="handrange_2"><span>86o</span></label></td>
+                <td><label><input type="checkbox" value="76o" name="handrange_2" checked><span>76o</span></label></td>
+                <td><label><input type="checkbox" value="66o" name="handrange_2" checked><span>66</span></label></td>
+                <td><label><input type="checkbox" value="65s" name="handrange_2" checked><span>65s</span></label></td>
+                <td><label><input type="checkbox" value="64s" name="handrange_2" checked><span>64s</span></label></td>
+                <td><label><input type="checkbox" value="63s" name="handrange_2"><span>63s</span></label></td>
+                <td><label><input type="checkbox" value="62s" name="handrange_2"><span>62s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A5o" name="handrange_2" checked><span>A5o</span></label></td>
+                <td><label><input type="checkbox" value="K5o" name="handrange_2" checked><span>K5o</span></label></td>
+                <td><label><input type="checkbox" value="Q5o" name="handrange_2" checked><span>Q5o</span></label></td>
+                <td><label><input type="checkbox" value="J5o" name="handrange_2"><span>J5o</span></label></td>
+                <td><label><input type="checkbox" value="T5o" name="handrange_2"><span>T5o</span></label></td>
+                <td><label><input type="checkbox" value="95o" name="handrange_2"><span>95o</span></label></td>
+                <td><label><input type="checkbox" value="85o" name="handrange_2"><span>85o</span></label></td>
+                <td><label><input type="checkbox" value="75o" name="handrange_2"><span>75o</span></label></td>
+                <td><label><input type="checkbox" value="65o" name="handrange_2"><span>65o</span></label></td>
+                <td><label><input type="checkbox" value="55o" name="handrange_2" checked><span>55</span></label></td>
+                <td><label><input type="checkbox" value="54s" name="handrange_2" checked><span>54s</span></label></td>
+                <td><label><input type="checkbox" value="53s" name="handrange_2" checked><span>53s</span></label></td>
+                <td><label><input type="checkbox" value="52s" name="handrange_2"><span>52s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A4o" name="handrange_2" checked><span>A4o</span></label></td>
+                <td><label><input type="checkbox" value="K4o" name="handrange_2" checked><span>K4o</span></label></td>
+                <td><label><input type="checkbox" value="Q4o" name="handrange_2" checked><span>Q4o</span></label></td>
+                <td><label><input type="checkbox" value="J4o" name="handrange_2"><span>J4o</span></label></td>
+                <td><label><input type="checkbox" value="T4o" name="handrange_2"><span>T4o</span></label></td>
+                <td><label><input type="checkbox" value="94o" name="handrange_2"><span>94o</span></label></td>
+                <td><label><input type="checkbox" value="84o" name="handrange_2"><span>84o</span></label></td>
+                <td><label><input type="checkbox" value="74o" name="handrange_2"><span>74o</span></label></td>
+                <td><label><input type="checkbox" value="64o" name="handrange_2"><span>64o</span></label></td>
+                <td><label><input type="checkbox" value="54o" name="handrange_2"><span>54o</span></label></td>
+                <td><label><input type="checkbox" value="44o" name="handrange_2" checked><span>44</span></label></td>
+                <td><label><input type="checkbox" value="43s" name="handrange_2"><span>43s</span></label></td>
+                <td><label><input type="checkbox" value="42s" name="handrange_2"><span>42s</span></label></td>
+            </tr>
+            <tr >
+                <td><label><input type="checkbox" value="A3o" name="handrange_2" checked><span>A3o</span></label></td>
+                <td><label><input type="checkbox" value="K3o" name="handrange_2" checked><span>K3o</span></label></td>
+                <td><label><input type="checkbox" value="Q3o" name="handrange_2"><span>Q3o</span></label></td>
+                <td><label><input type="checkbox" value="J3o" name="handrange_2"><span>J3o</span></label></td>
+                <td><label><input type="checkbox" value="T3o" name="handrange_2"><span>T3o</span></label></td>
+                <td><label><input type="checkbox" value="93o" name="handrange_2"><span>93o</span></label></td>
+                <td><label><input type="checkbox" value="83o" name="handrange_2"><span>83o</span></label></td>
+                <td><label><input type="checkbox" value="73o" name="handrange_2"><span>73o</span></label></td>
+                <td><label><input type="checkbox" value="63o" name="handrange_2"><span>63o</span></label></td>
+                <td><label><input type="checkbox" value="53o" name="handrange_2"><span>53o</span></label></td>
+                <td><label><input type="checkbox" value="43o" name="handrange_2"><span>43o</span></label></td>
+                <td><label><input type="checkbox" value="33o" name="handrange_2" checked><span>33</span></label></td>
+                <td><label><input type="checkbox" value="32s" name="handrange_2"><span>32s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A2o" name="handrange_2" checked><span>A2o</span></label></td>
+                <td><label><input type="checkbox" value="K2o" name="handrange_2" checked><span>K2o</span></label></td>
+                <td><label><input type="checkbox" value="Q2o" name="handrange_2"><span>Q2o</span></label></td>
+                <td><label><input type="checkbox" value="J2o" name="handrange_2"><span>J2o</span></label></td>
+                <td><label><input type="checkbox" value="T2o" name="handrange_2"><span>T2o</span></label></td>
+                <td><label><input type="checkbox" value="92o" name="handrange_2"><span>92o</span></label></td>
+                <td><label><input type="checkbox" value="82o" name="handrange_2"><span>82o</span></label></td>
+                <td><label><input type="checkbox" value="72o" name="handrange_2"><span>72o</span></label></td>
+                <td><label><input type="checkbox" value="62o" name="handrange_2"><span>62o</span></label></td>
+                <td><label><input type="checkbox" value="52o" name="handrange_2"><span>52o</span></label></td>
+                <td><label><input type="checkbox" value="42o" name="handrange_2"><span>42o</span></label></td>
+                <td><label><input type="checkbox" value="32o" name="handrange_2"><span>32o</span></label></td>
+                <td><label><input type="checkbox" value="22o" name="handrange_2" checked><span>22</span></label></td>
+            </tr>
+        </table>
+        <br><br>
+        <table>
+            <caption style="text-align: left; font-size: 1.1em;">&nbsp;BB-call</caption>
+            <tr class="row">
+                <td><label><input type="checkbox" value="AAo" name="handrange_3" checked><span>AA</span></label></td>
+                <td><label><input type="checkbox" value="AKs" name="handrange_3" checked><span>AKs</span></label></td>
+                <td><label><input type="checkbox" value="AQs" name="handrange_3" checked><span>AQs</span></label></td>
+                <td><label><input type="checkbox" value="AJs" name="handrange_3" checked><span>AJs</span></label></td>
+                <td><label><input type="checkbox" value="ATs" name="handrange_3" checked><span>ATs</span></label></td>
+                <td><label><input type="checkbox" value="A9s" name="handrange_3" checked><span>A9s</span></label></td>
+                <td><label><input type="checkbox" value="A8s" name="handrange_3" checked><span>A8s</span></label></td>
+                <td><label><input type="checkbox" value="A7s" name="handrange_3" checked><span>A7s</span></label></td>
+                <td><label><input type="checkbox" value="A6s" name="handrange_3" checked><span>A6s</span></label></td>
+                <td><label><input type="checkbox" value="A5s" name="handrange_3" checked><span>A5s</span></label></td>
+                <td><label><input type="checkbox" value="A4s" name="handrange_3" checked><span>A4s</span></label></td>
+                <td><label><input type="checkbox" value="A3s" name="handrange_3" checked><span>A3s</span></label></td>
+                <td><label><input type="checkbox" value="A2s" name="handrange_3" checked><span>A2s</span></label></td>
+            </tr>
+            <tr class="row">
+                <td><label><input type="checkbox" value="AKo" name="handrange_3" checked><span>AKo</span></label></td>
+                <td><label><input type="checkbox" value="KKo" name="handrange_3" checked><span>KK</span></label></td>
+                <td><label><input type="checkbox" value="KQs" name="handrange_3" checked><span>KQs</span></label></td>
+                <td><label><input type="checkbox" value="KJs" name="handrange_3" checked><span>KJs</span></label></td>
+                <td><label><input type="checkbox" value="KTs" name="handrange_3" checked><span>KTs</span></label></td>
+                <td><label><input type="checkbox" value="K9s" name="handrange_3" checked><span>K9s</span></label></td>
+                <td><label><input type="checkbox" value="K8s" name="handrange_3" checked><span>K8s</span></label></td>
+                <td><label><input type="checkbox" value="K7s" name="handrange_3" checked><span>K7s</span></label></td>
+                <td><label><input type="checkbox" value="K6s" name="handrange_3" checked><span>K6s</span></label></td>
+                <td><label><input type="checkbox" value="K5s" name="handrange_3" checked><span>K5s</span></label></td>
+                <td><label><input type="checkbox" value="K4s" name="handrange_3" checked><span>K4s</span></label></td>
+                <td><label><input type="checkbox" value="K3s" name="handrange_3" checked><span>K3s</span></label></td>
+                <td><label><input type="checkbox" value="K2s" name="handrange_3" checked><span>K2s</span></label></td>
+            </tr>
+            <tr class="row">
+                <td><label><input type="checkbox" value="AQo" name="handrange_3" checked><span>AQo</span></label></td>
+                <td><label><input type="checkbox" value="KQo" name="handrange_3" checked><span>KQo</span></label></td>
+                <td><label><input type="checkbox" value="QQo" name="handrange_3" checked><span>QQ</span></label></td>
+                <td><label><input type="checkbox" value="QJs" name="handrange_3" checked><span>QJs</span></label></td>
+                <td><label><input type="checkbox" value="QTs" name="handrange_3" checked><span>QTs</span></label></td>
+                <td><label><input type="checkbox" value="Q9s" name="handrange_3" checked><span>Q9s</span></label></td>
+                <td><label><input type="checkbox" value="Q8s" name="handrange_3" checked><span>Q8s</span></label></td>
+                <td><label><input type="checkbox" value="Q7s" name="handrange_3" checked><span>Q7s</span></label></td>
+                <td><label><input type="checkbox" value="Q6s" name="handrange_3" checked><span>Q6s</span></label></td>
+                <td><label><input type="checkbox" value="Q5s" name="handrange_3" checked><span>Q5s</span></label></td>
+                <td><label><input type="checkbox" value="Q4s" name="handrange_3" checked><span>Q4s</span></label></td>
+                <td><label><input type="checkbox" value="Q3s" name="handrange_3"><span>Q3s</span></label></td>
+                <td><label><input type="checkbox" value="Q2s" name="handrange_3"><span>Q2s</span></label></td>
+            </tr>
+            <tr class="row">
+                <td><label><input type="checkbox" value="AJo" name="handrange_3" checked><span>AJo</span></label></td>
+                <td><label><input type="checkbox" value="KJo" name="handrange_3" checked><span>KJo</span></label></td>
+                <td><label><input type="checkbox" value="QJo" name="handrange_3" checked><span>QJo</span></label></td>
+                <td><label><input type="checkbox" value="JJo" name="handrange_3" checked><span>JJ</span></label></td>
+                <td><label><input type="checkbox" value="JTs" name="handrange_3" checked><span>JTs</span></label></td>
+                <td><label><input type="checkbox" value="J9s" name="handrange_3" checked><span>J9s</span></label></td>
+                <td><label><input type="checkbox" value="J8s" name="handrange_3" checked><span>J8s</span></label></td>
+                <td><label><input type="checkbox" value="J7s" name="handrange_3" checked><span>J7s</span></label></td>
+                <td><label><input type="checkbox" value="J6s" name="handrange_3"><span>J6s</span></label></td>
+                <td><label><input type="checkbox" value="J5s" name="handrange_3"><span>J5s</span></label></td>
+                <td><label><input type="checkbox" value="J4s" name="handrange_3"><span>J4s</span></label></td>
+                <td><label><input type="checkbox" value="J3s" name="handrange_3"><span>J3s</span></label></td>
+                <td><label><input type="checkbox" value="J2s" name="handrange_3"><span>J2s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="ATo" name="handrange_3" checked><span>ATo</span></label></td>
+                <td><label><input type="checkbox" value="KTo" name="handrange_3" checked><span>KTo</span></label></td>
+                <td><label><input type="checkbox" value="QTo" name="handrange_3" checked><span>QTo</span></label></td>
+                <td><label><input type="checkbox" value="JTo" name="handrange_3" checked><span>JTo</span></label></td>
+                <td><label><input type="checkbox" value="TTo" name="handrange_3" checked><span>TT</span></label></td>
+                <td><label><input type="checkbox" value="T9s" name="handrange_3" checked><span>T9s</span></label></td>
+                <td><label><input type="checkbox" value="T8s" name="handrange_3" checked><span>T8s</span></label></td>
+                <td><label><input type="checkbox" value="T7s" name="handrange_3" checked><span>T7s</span></label></td>
+                <td><label><input type="checkbox" value="T6s" name="handrange_3"><span>T6s</span></label></td>
+                <td><label><input type="checkbox" value="T5s" name="handrange_3"><span>T5s</span></label></td>
+                <td><label><input type="checkbox" value="T4s" name="handrange_3"><span>T4s</span></label></td>
+                <td><label><input type="checkbox" value="T3s" name="handrange_3"><span>T3s</span></label></td>
+                <td><label><input type="checkbox" value="T2s" name="handrange_3"><span>T2s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A9o" name="handrange_3" checked><span>A9o</span></label></td>
+                <td><label><input type="checkbox" value="K9o" name="handrange_3" checked><span>K9o</span></label></td>
+                <td><label><input type="checkbox" value="Q9o" name="handrange_3" checked><span>Q9o</span></label></td>
+                <td><label><input type="checkbox" value="J9o" name="handrange_3" checked><span>J9o</span></label></td>
+                <td><label><input type="checkbox" value="T9o" name="handrange_3" checked><span>T9o</span></label></td>
+                <td><label><input type="checkbox" value="99o" name="handrange_3" checked><span>99</span></label></td>
+                <td><label><input type="checkbox" value="98s" name="handrange_3" checked><span>98s</span></label></td>
+                <td><label><input type="checkbox" value="97s" name="handrange_3"><span>97s</span></label></td>
+                <td><label><input type="checkbox" value="96s" name="handrange_3"><span>96s</span></label></td>
+                <td><label><input type="checkbox" value="95s" name="handrange_3"><span>95s</span></label></td>
+                <td><label><input type="checkbox" value="94s" name="handrange_3"><span>94s</span></label></td>
+                <td><label><input type="checkbox" value="93s" name="handrange_3"><span>93s</span></label></td>
+                <td><label><input type="checkbox" value="92s" name="handrange_3"><span>92s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A8o" name="handrange_3" checked><span>A8o</span></label></td>
+                <td><label><input type="checkbox" value="K8o" name="handrange_3" checked><span>K8o</span></label></td>
+                <td><label><input type="checkbox" value="Q8o" name="handrange_3" checked><span>Q8o</span></label></td>
+                <td><label><input type="checkbox" value="J8o" name="handrange_3"><span>J8o</span></label></td>
+                <td><label><input type="checkbox" value="T8o" name="handrange_3"><span>T8o</span></label></td>
+                <td><label><input type="checkbox" value="98o" name="handrange_3"><span>98o</span></label></td>
+                <td><label><input type="checkbox" value="88o" name="handrange_3" checked><span>88</span></label></td>
+                <td><label><input type="checkbox" value="87s" name="handrange_3"><span>87s</span></label></td>
+                <td><label><input type="checkbox" value="86s" name="handrange_3"><span>86s</span></label></td>
+                <td><label><input type="checkbox" value="85s" name="handrange_3"><span>85s</span></label></td>
+                <td><label><input type="checkbox" value="84s" name="handrange_3"><span>84s</span></label></td>
+                <td><label><input type="checkbox" value="83s" name="handrange_3"><span>83s</span></label></td>
+                <td><label><input type="checkbox" value="82s" name="handrange_3"><span>82s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A7o" name="handrange_3" checked><span>A7o</span></label></td>
+                <td><label><input type="checkbox" value="K7o" name="handrange_3" checked><span>K7o</span></label></td>
+                <td><label><input type="checkbox" value="Q7o" name="handrange_3"><span>Q7o</span></label></td>
+                <td><label><input type="checkbox" value="J7o" name="handrange_3"><span>J7o</span></label></td>
+                <td><label><input type="checkbox" value="T7o" name="handrange_3"><span>T7o</span></label></td>
+                <td><label><input type="checkbox" value="97o" name="handrange_3"><span>97o</span></label></td>
+                <td><label><input type="checkbox" value="87o" name="handrange_3"><span>87o</span></label></td>
+                <td><label><input type="checkbox" value="77o" name="handrange_3" checked><span>77</span></label></td>
+                <td><label><input type="checkbox" value="76s" name="handrange_3"><span>76s</span></label></td>
+                <td><label><input type="checkbox" value="75s" name="handrange_3"><span>75s</span></label></td>
+                <td><label><input type="checkbox" value="74s" name="handrange_3"><span>74s</span></label></td>
+                <td><label><input type="checkbox" value="73s" name="handrange_3"><span>73s</span></label></td>
+                <td><label><input type="checkbox" value="72s" name="handrange_3"><span>72s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A6o" name="handrange_3" checked><span>A6o</span></label></td>
+                <td><label><input type="checkbox" value="K6o" name="handrange_3" checked><span>K6o</span></label></td>
+                <td><label><input type="checkbox" value="Q6o" name="handrange_3"><span>Q6o</span></label></td>
+                <td><label><input type="checkbox" value="J6o" name="handrange_3"><span>J6o</span></label></td>
+                <td><label><input type="checkbox" value="T6o" name="handrange_3"><span>T6o</span></label></td>
+                <td><label><input type="checkbox" value="96o" name="handrange_3"><span>96o</span></label></td>
+                <td><label><input type="checkbox" value="86o" name="handrange_3"><span>86o</span></label></td>
+                <td><label><input type="checkbox" value="76o" name="handrange_3"><span>76o</span></label></td>
+                <td><label><input type="checkbox" value="66o" name="handrange_3" checked><span>66</span></label></td>
+                <td><label><input type="checkbox" value="65s" name="handrange_3"><span>65s</span></label></td>
+                <td><label><input type="checkbox" value="64s" name="handrange_3"><span>64s</span></label></td>
+                <td><label><input type="checkbox" value="63s" name="handrange_3"><span>63s</span></label></td>
+                <td><label><input type="checkbox" value="62s" name="handrange_3"><span>62s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A5o" name="handrange_3" checked><span>A5o</span></label></td>
+                <td><label><input type="checkbox" value="K5o" name="handrange_3" checked><span>K5o</span></label></td>
+                <td><label><input type="checkbox" value="Q5o" name="handrange_3"><span>Q5o</span></label></td>
+                <td><label><input type="checkbox" value="J5o" name="handrange_3"><span>J5o</span></label></td>
+                <td><label><input type="checkbox" value="T5o" name="handrange_3"><span>T5o</span></label></td>
+                <td><label><input type="checkbox" value="95o" name="handrange_3"><span>95o</span></label></td>
+                <td><label><input type="checkbox" value="85o" name="handrange_3"><span>85o</span></label></td>
+                <td><label><input type="checkbox" value="75o" name="handrange_3"><span>75o</span></label></td>
+                <td><label><input type="checkbox" value="65o" name="handrange_3"><span>65o</span></label></td>
+                <td><label><input type="checkbox" value="55o" name="handrange_3" checked><span>55</span></label></td>
+                <td><label><input type="checkbox" value="54s" name="handrange_3"><span>54s</span></label></td>
+                <td><label><input type="checkbox" value="53s" name="handrange_3"><span>53s</span></label></td>
+                <td><label><input type="checkbox" value="52s" name="handrange_3"><span>52s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A4o" name="handrange_3" checked><span>A4o</span></label></td>
+                <td><label><input type="checkbox" value="K4o" name="handrange_3" checked><span>K4o</span></label></td>
+                <td><label><input type="checkbox" value="Q4o" name="handrange_3"><span>Q4o</span></label></td>
+                <td><label><input type="checkbox" value="J4o" name="handrange_3"><span>J4o</span></label></td>
+                <td><label><input type="checkbox" value="T4o" name="handrange_3"><span>T4o</span></label></td>
+                <td><label><input type="checkbox" value="94o" name="handrange_3"><span>94o</span></label></td>
+                <td><label><input type="checkbox" value="84o" name="handrange_3"><span>84o</span></label></td>
+                <td><label><input type="checkbox" value="74o" name="handrange_3"><span>74o</span></label></td>
+                <td><label><input type="checkbox" value="64o" name="handrange_3"><span>64o</span></label></td>
+                <td><label><input type="checkbox" value="54o" name="handrange_3"><span>54o</span></label></td>
+                <td><label><input type="checkbox" value="44o" name="handrange_3" checked><span>44</span></label></td>
+                <td><label><input type="checkbox" value="43s" name="handrange_3"><span>43s</span></label></td>
+                <td><label><input type="checkbox" value="42s" name="handrange_3"><span>42s</span></label></td>
+            </tr>
+            <tr >
+                <td><label><input type="checkbox" value="A3o" name="handrange_3" checked><span>A3o</span></label></td>
+                <td><label><input type="checkbox" value="K3o" name="handrange_3" checked><span>K3o</span></label></td>
+                <td><label><input type="checkbox" value="Q3o" name="handrange_3"><span>Q3o</span></label></td>
+                <td><label><input type="checkbox" value="J3o" name="handrange_3"><span>J3o</span></label></td>
+                <td><label><input type="checkbox" value="T3o" name="handrange_3"><span>T3o</span></label></td>
+                <td><label><input type="checkbox" value="93o" name="handrange_3"><span>93o</span></label></td>
+                <td><label><input type="checkbox" value="83o" name="handrange_3"><span>83o</span></label></td>
+                <td><label><input type="checkbox" value="73o" name="handrange_3"><span>73o</span></label></td>
+                <td><label><input type="checkbox" value="63o" name="handrange_3"><span>63o</span></label></td>
+                <td><label><input type="checkbox" value="53o" name="handrange_3"><span>53o</span></label></td>
+                <td><label><input type="checkbox" value="43o" name="handrange_3"><span>43o</span></label></td>
+                <td><label><input type="checkbox" value="33o" name="handrange_3" checked><span>33</span></label></td>
+                <td><label><input type="checkbox" value="32s" name="handrange_3"><span>32s</span></label></td>
+            </tr>
+
+            <tr >
+                <td><label><input type="checkbox" value="A2o" name="handrange_3" checked><span>A2o</span></label></td>
+                <td><label><input type="checkbox" value="K2o" name="handrange_3" checked><span>K2o</span></label></td>
+                <td><label><input type="checkbox" value="Q2o" name="handrange_3"><span>Q2o</span></label></td>
+                <td><label><input type="checkbox" value="J2o" name="handrange_3"><span>J2o</span></label></td>
+                <td><label><input type="checkbox" value="T2o" name="handrange_3"><span>T2o</span></label></td>
+                <td><label><input type="checkbox" value="92o" name="handrange_3"><span>92o</span></label></td>
+                <td><label><input type="checkbox" value="82o" name="handrange_3"><span>82o</span></label></td>
+                <td><label><input type="checkbox" value="72o" name="handrange_3"><span>72o</span></label></td>
+                <td><label><input type="checkbox" value="62o" name="handrange_3"><span>62o</span></label></td>
+                <td><label><input type="checkbox" value="52o" name="handrange_3"><span>52o</span></label></td>
+                <td><label><input type="checkbox" value="42o" name="handrange_3"><span>42o</span></label></td>
+                <td><label><input type="checkbox" value="32o" name="handrange_3"><span>32o</span></label></td>
+                <td><label><input type="checkbox" value="22o" name="handrange_3" checked><span>22</span></label></td>
+            </tr>
+        </table>
+
+        <br><br>
+        <button type="submit">送信</button>
+    </form>
+</body>
+</html>

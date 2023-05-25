@@ -31,6 +31,8 @@ ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
+SITE_ID=1
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,11 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
+CSRF_TRUSTED_ORIGINS = ['https://kkpokeraofbot.ml']
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'myportfolio/static'),
 
