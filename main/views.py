@@ -21,8 +21,8 @@ def google2243e3042b43a5c5(request):
     return render(request, 'google2243e3042b43a5c5.html')
 
 
-def simulater_page(request):
-    return render(request, 'simulater_page.html')
+def simulator_page(request):
+    return render(request, 'simulator_page.html')
 
 
 def result(request):
@@ -37,14 +37,14 @@ def result(request):
     handrange_3=request.POST.getlist("handrange_3")
 
 
-    money=simulater(val1,val2,val3,val4,handrange_1,handrange_2,handrange_3)
+    money=simulator(val1,val2,val3,val4,handrange_1,handrange_2,handrange_3)
     print(handrange_1)
     return render(request,"result.html",
     {"result1":money[0],"result2":money[1],"result3":list(money[2]),"result4":list(money[3]),"result5":list(money[4]),"label1":label1,"label2":label2,"val3":val3,"val1":val1,"val2":val2})
 
 
 
-def simulater(rake_back,loop_num,player1_money,player2_money,handrange_1,handrange_2,handrange_3):
+def simulator(rake_back,loop_num,player1_money,player2_money,handrange_1,handrange_2,handrange_3):
     def heads_sbpush(hand):
         if hand in handrange_1:
             return True
